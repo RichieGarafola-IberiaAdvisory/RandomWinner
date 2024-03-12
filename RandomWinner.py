@@ -9,8 +9,11 @@ def select_winners(participants, num_winners):
     winners = random.sample(participants, num_winners)
     return winners
 
+# Display the Iberia logo
+logo_path = "./Images/iberia-logo.png"
+st.image(logo_path)
 
-st.title("Random Winners Selector App")
+st.title("Random Winner")
 
 # User input for participants
 participants = st.text_area("Enter participants (one per line):").split("\n")
