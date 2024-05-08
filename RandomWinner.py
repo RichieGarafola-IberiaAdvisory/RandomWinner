@@ -23,7 +23,9 @@ uploaded_file = st.file_uploader("Upload Excel File", type=["xlsx", "xls"])
 if uploaded_file is not None:
     # Read Excel file and extract names from the 'Name' column
     df = pd.read_excel(uploaded_file)
-    participants = df["Name"].tolist()
+    # participants = df["Name"].tolist()
+    participants = df["My name is..."].tolist()
+
 else:
     # User input for participants
     participants = st.text_area("Enter participants (one per line):").split("\n")
