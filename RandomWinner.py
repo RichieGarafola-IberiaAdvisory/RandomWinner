@@ -15,7 +15,7 @@ def select_winners(participants, num_winners):
 logo_path = "./Images/iberia-logo.png"
 st.image(logo_path)
 
-st.title("Random Winner")
+st.title("Iberia Garmin Fenix Watch Raffle Winner")
 
 # Option to upload an Excel file
 uploaded_file = st.file_uploader("Upload Excel File", type=["xlsx", "xls"])
