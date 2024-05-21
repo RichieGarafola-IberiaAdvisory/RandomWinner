@@ -33,6 +33,7 @@ if len(participants) == 0:
     st.warning("Please enter or upload participant names.")
 else:
 
+
     # Display the slot machine HTML
     slot_machine_html = """
     <div class="slot-machine">
@@ -160,15 +161,15 @@ else:
         }}
 
         .reel {{
-          width: 100px;
+          width: 200px;
           height: 100px;
-          border: 2px solid #000;
+          border: 2px solid #083f5a;
           margin: 0 10px;
           display: flex;
           justify-content: center;
           align-items: center;
           overflow: hidden;
-          background-color: #f0f0f0;
+          background-color: #57a4f2; /*Outter Color*/
           border-radius: 10px;
         }}
 
@@ -177,7 +178,7 @@ else:
           text-align: center;
           color: #fff;
           padding: 20px;
-          background-color: #007bff;
+          background-color: #083f5a; /*Inner Color*/
           border-radius: 50%;
         }}
         </style>
