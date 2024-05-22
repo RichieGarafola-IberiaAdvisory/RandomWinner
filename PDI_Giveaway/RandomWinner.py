@@ -169,7 +169,7 @@ else:
           justify-content: center;
           align-items: center;
           overflow: hidden;
-          background-color: #57a4f2; /*Outter Color*/
+          background-color: #083f5a; /*Outter Color*/
           border-radius: 10px;
         }}
 
@@ -178,7 +178,7 @@ else:
           text-align: center;
           color: #fff;
           padding: 20px;
-          background-color: #083f5a; /*Inner Color*/
+          background-color: #3A61A4; /*Inner Color*/
           border-radius: 50%;
         }}
         </style>
