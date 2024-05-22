@@ -169,7 +169,7 @@ else:
           justify-content: center;
           align-items: center;
           overflow: hidden;
-          background-color: #083f5a; /*Outter Color*/
+          background-color: #D3E7FF; /*Outter Color*/
           border-radius: 10px;
         }}
 
@@ -178,8 +178,9 @@ else:
           text-align: center;
           color: #fff;
           padding: 20px;
-          background-color: #3A61A4; /*Inner Color*/
+          background-color: #083f5a; /*Inner Color*/
           border-radius: 50%;
         }}
         </style>
         """, height=400)
+
