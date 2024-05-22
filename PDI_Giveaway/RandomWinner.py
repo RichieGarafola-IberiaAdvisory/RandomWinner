@@ -32,7 +32,17 @@ participants = [p.strip() for p in participants if p.strip()]
 if len(participants) == 0:
     st.warning("Please enter or upload participant names.")
 else:
-
+    
+    # Display the KPI for the total number of unique participants
+    unique_participants = len(set(participants))
+    # st.metric(label="Total  Participants", value=unique_participants)
+    # Make KPI more prominent
+    st.markdown("""
+    <div style='text-align: center;'>
+        <h2>Total Participants</h2>
+        <div style='font-size: 48px; color: #007bff;'>{}</div>
+    </div>
+    """.format(unique_participants), unsafe_allow_html=True)
 
     # Display the slot machine HTML
     slot_machine_html = """
@@ -183,4 +193,3 @@ else:
         }}
         </style>
         """, height=400)
-
