@@ -220,10 +220,10 @@ col1, spacer, col2 = st.columns([1, .5, 2])
 # Watch image in the left column
 watch_image_path = "./Images/Watch.png"
 # PDI image
-PDI_image_path = "./Images/PDI.png"
+# PDI_image_path = "./Images/PDI.png"
 
 with col1:
-    st.image(PDI_image_path, use_column_width=True)
+    # st.image(PDI_image_path, use_column_width=True)
     st.image(watch_image_path, use_column_width=True)
 
 # Content in the right column
