@@ -220,7 +220,7 @@ col1, spacer, col2 = st.columns([1, .5, 2])
 # Watch image in the left column
 watch_image_path = "./Images/Watch.png"
 # PDI image
-PDI_image_path = "./Images/PDI.png"
+PDI_image_path = "https://eventpower-res.cloudinary.com/image/upload/c_fit,h_200,w_300/f_auto,q_auto/v1/media/ASMC%20Education%20Department/24asmc-pdi/website_header/t8zobvei74ouzoiquqdv"
 
 with col1:
     st.image(PDI_image_path, use_column_width=True)
