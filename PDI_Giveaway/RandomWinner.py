@@ -197,9 +197,229 @@
 
 
 ######################
-# Version with design
+# Version 1 with design
 ######################
 
+
+
+# import streamlit as st
+# import pandas as pd
+# import random
+# import streamlit.components.v1 as components
+
+# # Function to select a single winner
+# def select_winner(participants):
+#     winner = random.choice(participants)
+#     return winner
+
+    
+
+# # Define a two-column layout
+# col1, spacer, col2 = st.columns([1, .5, 2])
+
+# # Watch image in the left column
+# watch_image_path = "https://m.media-amazon.com/images/I/61COgp2msoL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
+# # PDI image
+# PDI_image_path = "https://eventpower-res.cloudinary.com/image/upload/c_fit,h_200,w_300/f_auto,q_auto/v1/media/ASMC%20Education%20Department/24asmc-pdi/website_header/t8zobvei74ouzoiquqdv"
+
+# with col1:
+#     st.image(PDI_image_path, use_column_width=True)
+#     st.image(watch_image_path, use_column_width=True)
+
+# # Content in the right column
+# with col2:
+#     # Display the logo/image
+#     logo_path = "./Images/iberia-logo.png"
+#     st.image(logo_path)
+
+#     # Sidebar for file upload
+#     st.sidebar.header("Upload and Customize")
+
+#     # Option to upload an Excel file
+#     uploaded_file = st.sidebar.file_uploader("Upload Excel File", type=["xlsx", "xls"])
+
+#     if uploaded_file is not None:
+#         # Read Excel file and extract names from the 'Name' column
+#         df = pd.read_excel(uploaded_file)
+#         participants = df["My name is..."].tolist()
+
+#         # Clean up participants list
+#         participants = [p.strip() for p in participants if p.strip()]
+
+#         # Check if participants list is empty
+#         if len(participants) == 0:
+#             st.warning("The uploaded file does not contain any participant names.")
+#         else:
+#             # Display the KPI for the total number of unique participants
+#             unique_participants = len(set(participants))
+#             st.markdown("""
+#             <div style='text-align: center;'>
+#                 <h2>Out of {} participants</h2>
+#                 <h2>The winner of the</h2>
+#                 <h2>Garmin Fenix 6X Pro is…</h2>
+#             </div>
+#             """.format(unique_participants), unsafe_allow_html=True)
+
+#             # Display the slot machine HTML
+#             slot_machine_html = """
+#             <div class="slot-machine">
+#               <div class="reel" id="reel1"></div>
+#               <div class="reel" id="reel2"></div>
+#               <div class="reel" id="reel3"></div>
+#             </div>
+#             <div id="winner" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
+
+#             <style>
+#             .slot-machine {
+#               display: flex;
+#               justify-content: center;
+#               align-items: center;
+#               margin-top: 50px;
+#             }
+
+#             .reel {
+#               width: 100px;
+#               height: 100px;
+#               border: 2px solid #000;
+#               margin: 0 10px;
+#               display: flex;
+#               justify-content: center;
+#               align-items: center;
+#               overflow: hidden;
+#               background-color: #f0f0f0;
+#               border-radius: 10px;
+#             }
+
+#             .slot-item {
+#               font-size: 24px;
+#               text-align: center;
+#               color: #fff;
+#               padding: 20px;
+#               background-color: #007bff;
+#               border-radius: 50%;
+#             }
+#             </style>
+
+#             <script>
+#             function spin(reel, values) {{
+#                 const reelElement = document.getElementById(reel);
+#                 reelElement.innerHTML = '';  // Clear previous content
+
+#                 // Add spinning effect
+#                 const spinAnimation = setInterval(() => {{
+#                     const randomValue = values[Math.floor(Math.random() * values.length)];
+#                     reelElement.innerHTML = `<div class="slot-item">${{randomValue}}</div>`;
+#                 }}, 100);
+
+#                 // Stop the spinning effect after some time
+#                 setTimeout(() => {{
+#                     clearInterval(spinAnimation);
+#                     const finalValue = "{selected_winner}";
+#                     reelElement.innerHTML = `<div class="slot-item">${{finalValue}}</div>`;
+#                 }}, 3000);  // Duration of spin
+#             }}
+
+#             function startSlotMachine(participants) {{
+#                 const values = participants.split(',');
+
+#                 spin('reel1', values);
+#                 spin('reel2', values);
+#                 spin('reel3', values);
+
+#                 setTimeout(() => {{
+#                     document.getElementById('winner').innerText = `Winner: {selected_winner}`;
+#                 }}, 3200);  // Duration of spin + some delay for winner announcement
+#             }}
+
+#             startSlotMachine("{participants_str}");
+#             </script>
+#             """
+            
+
+            
+#             # Button to select winner
+#             if st.button("Select Winner", use_container_width=True):
+#                 selected_winner = select_winner(participants)
+
+#                 # Combine participants into a comma-separated string
+#                 participants_str = ",".join(participants)
+
+#                 # Inject HTML, JS, and CSS for the slot machine
+#                 components.html(f"""
+#                 {slot_machine_html}
+#                 <script>
+#                 function spin(reel, values) {{
+#                     const reelElement = document.getElementById(reel);
+#                     reelElement.innerHTML = '';  // Clear previous content
+
+#                     // Add spinning effect
+#                     const spinAnimation = setInterval(() => {{
+#                         const randomValue = values[Math.floor(Math.random() * values.length)];
+#                         reelElement.innerHTML = `<div class="slot-item">${{randomValue}}</div>`;
+#                     }}, 100);
+
+#                     // Stop the spinning effect after some time
+#                     setTimeout(() => {{
+#                         clearInterval(spinAnimation);
+#                         const finalValue = "{selected_winner}";
+#                         reelElement.innerHTML = `<div class="slot-item">${{finalValue}}</div>`;
+#                     }}, 3000);  // Duration of spin
+#                 }}
+
+#                 function startSlotMachine(participants) {{
+#                     const values = participants.split(',');
+
+#                     spin('reel1', values);
+#                     spin('reel2', values);
+#                     spin('reel3', values);
+
+#                     setTimeout(() => {{
+#                         document.getElementById('winner').innerText = `Winner: {selected_winner}`;
+#                     }}, 3200);  // Duration of spin + some delay for winner announcement
+#                 }}
+
+#                 startSlotMachine("{participants_str}");
+#                 </script>
+#                 <style>
+#                 .slot-machine {{
+#                   display: flex;
+#                   justify-content: center;
+#                   align-items: center;
+#                   margin-top: 50px;
+#                 }}
+
+#                 .reel {{
+#                   width: 200px;
+#                   height: 100px;
+#                   border: 2px solid #083f5a;
+#                   margin: 0 10px;
+#                   display: flex;
+#                   justify-content: center;
+#                   align-items: center;
+#                   overflow: hidden;
+#                   background-color: #D3E7FF; /*Outter Color*/
+#                   border-radius: 10px;
+#                 }}
+
+#                 .slot-item {{
+#                   font-size: 24px;
+#                   text-align: center;
+#                   color: #fff;
+#                   padding: 20px;
+#                   background-color: #083f5a; /*Inner Color*/
+#                   border-radius: 50%;
+#                 }}
+#                 </style>
+#                 """, height=400)
+
+# #     else:
+# #         st.warning("Please upload an Excel file to proceed.")
+
+
+
+##########################
+# Version 2 with revisions
+##########################
 
 
 import streamlit as st
@@ -212,8 +432,6 @@ def select_winner(participants):
     winner = random.choice(participants)
     return winner
 
-    
-
 # Define a two-column layout
 col1, spacer, col2 = st.columns([1, .5, 2])
 
@@ -224,7 +442,7 @@ PDI_image_path = "https://eventpower-res.cloudinary.com/image/upload/c_fit,h_200
 
 with col1:
     st.image(PDI_image_path, use_column_width=True)
-    st.image(watch_image_path, use_column_width=True)
+    st.markdown(f"<div style='margin-top: 90px;'><img src='{watch_image_path}' style='width: 100%;'></div>", unsafe_allow_html=True)
 
 # Content in the right column
 with col2:
@@ -253,9 +471,9 @@ with col2:
             # Display the KPI for the total number of unique participants
             unique_participants = len(set(participants))
             st.markdown("""
-            <div style='text-align: center;'>
-                <h2>Out of {} participants</h2>
-                <h2>The winner of the</h2>
+            <div style='text-align: center; font-family: "Montserrat", sans-serif;'>
+                <h2>Out of {} participants,</h2>
+                <h2>the winner of the</h2>
                 <h2>Garmin Fenix 6X Pro is…</h2>
             </div>
             """.format(unique_participants), unsafe_allow_html=True)
@@ -263,13 +481,22 @@ with col2:
             # Display the slot machine HTML
             slot_machine_html = """
             <div class="slot-machine">
-              <div class="reel" id="reel1"></div>
-              <div class="reel" id="reel2"></div>
-              <div class="reel" id="reel3"></div>
+                <div class="outer-box">
+                    <div class="reel" id="reel1"></div>
+                    <div class="reel" id="reel2"></div>
+                    <div class="reel" id="reel3"></div>
+                </div>
             </div>
-            <div id="winner" style="text-align: center; font-size: 24px; margin-top: 20px;"></div>
+            <div id="winner" style="text-align: center; font-size: 24px; margin-top: 20px; visibility: hidden;"></div>
 
             <style>
+            
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+            body {
+              font-family: 'Montserrat', sans-serif;
+            }
+            
             .slot-machine {
               display: flex;
               justify-content: center;
@@ -277,17 +504,28 @@ with col2:
               margin-top: 50px;
             }
 
+            .outer-box {
+              width: 400px;
+              height: 150px;
+              background-color: #D3E7FF; /* Light blue outer box */
+              border-radius: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 10px;
+              gap: 10px;
+              overflow: hidden;
+            }
+
             .reel {
               width: 100px;
               height: 100px;
-              border: 2px solid #000;
-              margin: 0 10px;
+              background-color: #083f5a; /* Dark blue inner box */
               display: flex;
               justify-content: center;
               align-items: center;
               overflow: hidden;
-              background-color: #f0f0f0;
-              border-radius: 10px;
+              border-radius: 20px;
             }
 
             .slot-item {
@@ -296,10 +534,20 @@ with col2:
               color: #fff;
               padding: 20px;
               background-color: #007bff;
-              border-radius: 50%;
+              font-family: 'Montserrat', sans-serif;
+            }
+
+            @keyframes fadeInBounce {
+              0% { opacity: 0; transform: scale(0.3); }
+              50% { opacity: 1; transform: scale(1.05); }
+              70% { transform: scale(0.9); }
+              100% { transform: scale(1); }
+            }
+
+            .fade-in-bounce {
+              animation: fadeInBounce 1s ease-in-out;
             }
             </style>
-
             <script>
             function spin(reel, values) {{
                 const reelElement = document.getElementById(reel);
@@ -327,7 +575,10 @@ with col2:
                 spin('reel3', values);
 
                 setTimeout(() => {{
-                    document.getElementById('winner').innerText = `Winner: {selected_winner}`;
+                    const winnerElement = document.getElementById('winner');
+                    winnerElement.innerText = `Winner: {selected_winner}`;
+                    winnerElement.style.visibility = 'visible';
+                    winnerElement.classList.add('fade-in-bounce');
                 }}, 3200);  // Duration of spin + some delay for winner announcement
             }}
 
@@ -335,9 +586,25 @@ with col2:
             </script>
             """
             
-
-            
             # Button to select winner
+            button_style = """
+            <style>
+            .stButton>button {
+                background-color: #D3E7FF;
+                color: #083f5a;
+                border: none;
+                font-size: 20px;
+                border-radius: 10px;
+                width: 100%;
+                font-family: 'Montserrat', sans-serif;
+            }
+            .stButton>button:hover {
+                background-color: #a6c8ff;
+            }
+            </style>
+            """
+            st.markdown(button_style, unsafe_allow_html=True)
+
             if st.button("Select Winner", use_container_width=True):
                 selected_winner = select_winner(participants)
 
@@ -374,31 +641,53 @@ with col2:
                     spin('reel3', values);
 
                     setTimeout(() => {{
-                        document.getElementById('winner').innerText = `Winner: {selected_winner}`;
+                        const winnerElement = document.getElementById('winner');
+                        winnerElement.innerText = `Winner: {selected_winner}`;
+                        winnerElement.style.visibility = 'visible';
+                        winnerElement.classList.add('fade-in-bounce');
                     }}, 3200);  // Duration of spin + some delay for winner announcement
                 }}
 
                 startSlotMachine("{participants_str}");
                 </script>
                 <style>
+                
+                @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+                body {{
+                  font-family: 'Montserrat', sans-serif;
+                }}                
+                
                 .slot-machine {{
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   margin-top: 50px;
                 }}
+                
+                .outer-box {{
+                  width: 400px;
+                  height: 100px;
+                  background-color: #D3E7FF; /* Light blue outer box */
+                  border-radius: 20px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 10px;
+                  gap: 10px;
+                  overflow: hidden;
+                }}
 
                 .reel {{
-                  width: 200px;
-                  height: 100px;
-                  border: 2px solid #083f5a;
-                  margin: 0 10px;
+                  width: 30%;
+                  height: 80px;
+                  margin: 0 1px;
                   display: flex;
                   justify-content: center;
                   align-items: center;
                   overflow: hidden;
                   background-color: #D3E7FF; /*Outter Color*/
-                  border-radius: 10px;
+                  border-radius: 20px;
                 }}
 
                 .slot-item {{
@@ -407,10 +696,19 @@ with col2:
                   color: #fff;
                   padding: 20px;
                   background-color: #083f5a; /*Inner Color*/
-                  border-radius: 50%;
+                  border-radius: 20px;
+                  font-family: 'Montserrat', sans-serif;
+                }}
+
+                @keyframes fadeInBounce {{
+                  0% {{ opacity: 0; transform: scale(0.3); }}
+                  50% {{ opacity: 1; transform: scale(1.05); }}
+                  70% {{ transform: scale(0.9); }}
+                  100% {{ transform: scale(1); }}
+                }}
+
+                .fade-in-bounce {{
+                  animation: fadeInBounce 1s ease-in-out;
                 }}
                 </style>
                 """, height=400)
-
-#     else:
-#         st.warning("Please upload an Excel file to proceed.")
